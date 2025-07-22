@@ -2,36 +2,71 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <link rel="stylesheet" href="./src/style.css" />
     <link rel="stylesheet" href="./dist/assets/index-CLPzm_k5.css" />
     <link rel="icon" href="/icon.png" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Suitmedia App</title>
   </head>
   <body>
     <nav
-      class="flex justify-center items-center h-23 bg-orange-500 text-white w-full px-35"
+      class="fixed top-0 left-0 w-full z-50 flex justify-center items-center h-23 bg-orange-500 text-white px-35"
+      style="transition: all 0.3s ease-in-out"
     >
       <div class="flex items-start w-1/2">
         <img src="/logos.png" alt="logo" class="h-18" />
       </div>
       <ul class="flex gap-5 w-1/2 justify-end">
-        <li class="cursor-pointer hover:border-b-5 hover:border-white">Work</li>
-        <li class="cursor-pointer hover:border-b-5 hover:border-white">About</li>
-        <li class="cursor-pointer hover:border-b-5 hover:border-white">Services</li>
-        <li class="cursor-pointer border-b-5 pb-2 border-white">Ideas</li>
-        <li class="cursor-pointer hover:border-b-5 hover:border-white">Careers</li>
-        <li class="cursor-pointer hover:border-b-5 hover:border-white">Contact</li>
+        <li class="hover:border-b-5 hover:border-white transition-all duration-100"><a href="">Work</a></li>
+        <li class="hover:border-b-5 hover:border-white transition-all duration-100"><a href="">About</a></li>
+        <li class="hover:border-b-5 hover:border-white transition-all duration-100"><a href="">Services</a></li>
+        <li class="hover:border-b-5 hover:border-white transition-all duration-100"><a href="">Ideas</a></li>
+        <li class="hover:border-b-5 hover:border-white transition-all duration-100"><a href="">Careers</a></li>
+        <li class="hover:border-b-5 hover:border-white transition-all duration-100"><a href="">Contact</a></li>
       </ul>
     </nav>
 
     <main>
-      <div class="flex flex-col items-center justify-center h-150 bg-[url('/bgideas.jpg')] bg-cover bg-center text-white"
-      style="clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);">
-        <h1 class="text-7xl">Ideas</h1>
-        <p class="text-2xl mb-20">Where all our great things begin</p>
+      <div 
+        class="banner-section flex flex-col items-center justify-center h-[600px] bg-[url('/bgideas.jpg')] bg-cover bg-fixed bg-center text-white relative overflow-hidden"
+        style="clip-path: polygon(0 0, 100% 0, 100% 70%, 0 100%);"
+      >
+        <!-- Overlay gelap untuk kontras yang lebih baik -->
+        <div class="absolute inset-0 bg-black/30"></div>
+        
+        <!-- Container untuk teks -->
+        <div class="relative z-10 flex flex-col items-center">
+          <h1 class="text-7xl font-bold mb-4 transition-all duration-300">Ideas</h1>
+          <p class="text-2xl transition-all duration-300">Where all our great things begin</p>
+        </div>
       </div>
+      <section class="max-w-5xl mx-auto px-4 py-8">
+        <!-- Filter & Sort Controls -->
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-6">
+          <div class="flex items-center gap-2">
+            <label for="showPerPage" class="font-medium">Show per page:</label>
+            <select id="showPerPage" class="border rounded px-2 py-1">
+              <option value="10">10</option>
+              <option value="20">20</option>
+              <option value="50">50</option>
+            </select>
+          </div>
+          <div class="flex items-center gap-2">
+            <label for="sortBy" class="font-medium">Sort by:</label>
+            <select id="sortBy" class="border rounded px-2 py-1">
+              <option value="-published_at">Terbaru</option>
+              <option value="published_at">Terlama</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6" id="postList">
+        </div>
+
+        <div class="flex justify-center items-center gap-1 mt-8" id="pagination">
+        </div>
+      </section>
     </main>
     <script type="module" src="/src/main.js"></script>
   </body>
